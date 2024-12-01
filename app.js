@@ -3,6 +3,9 @@ const path = require('path');
 
 const app = express();
 
+// Environment
+require('dotenv').config();
+
 // Static serving
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -10,8 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req
                       , res) => {
     res.json({message: 'Hello world.', timestamp: Date.now()});
-    res.sendStatus()
-    res.send("Functional.")
+
 })
 
 const PORT = process.env.PORT || 3000;
