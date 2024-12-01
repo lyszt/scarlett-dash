@@ -7,9 +7,11 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Dynamic route
-app.get('/api/data', (req
+app.get('/', (req
                       , res) => {
     res.json({message: 'Hello world.', timestamp: Date.now()});
+    res.sendStatus()
+    res.send("Functional.")
 })
 
 const PORT = process.env.PORT || 3000;
