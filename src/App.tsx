@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState} from "react";
 
-export default function App (){
+export default function Login (){
     
     // Request
     const [password, setPassword] = useState('');
@@ -17,9 +17,14 @@ export default function App (){
         if(response.ok){
             logo?.classList.remove('saturate-0');
             logo?.classList.add('saturate-100')
+            const transition = document.querySelector('#transition');
+            transition?.classList.remove('w-0');
+            transition?.classList.remove('h-0');
+            transition?.classList.add('w-screen');
+            transition?.classList.add('h-screen');
             setInterval(() => {
                 window.location.href = '/dashboard';  
-            }, 500);
+            }, 1000);
            
         } else {
             const message = await response.text();
@@ -33,9 +38,10 @@ export default function App (){
     return (
             <section className="
              w-screen h-screen flex justify-center items-center m-o max-w-full">
+                <div id="transition" className='transition-all delay-500 duration-600 rounded-full absolute bg-gray-100 w-0 h-0 z-10 m-0 top-0'></div>
                 <div className="border-solid border-gray-200 border bg-white flex flex-col w-2/6 h-3/4 items-center justify-center content-stretch rounded-3xl">
                     <form onSubmit={handleLogin} action="/login" className="w-1/2 flex items-center gap-6 flex-col bg-transparent">
-                        <img id="logo" className="transition-all duration-600 bg-transparent w-5/6 saturate-0" src="/src/assets/crimsonanimation.gif" alt="Graph surrounded by multiple circles. Lyszt's logo."></img>
+                        <img id="logo" className="transition-all duration-500 bg-transparent w-5/6 saturate-0" src="/src/assets/crimsonanimation.gif" alt="Graph surrounded by multiple circles. Lyszt's logo."></img>
                         <label htmlFor="password" className="bg-transparent text-left text-gray-500 m-10 ml-7">Password:</label>
                         <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" className='p-3' placeholder="Insert your password." required></input>
                     <input type="submit" name="submit" value="Sign-in" className=" p-3 hover:no-underline hover:bg-blue-400 bg-gray-300 bg-gradient-to-r p-3/"></input>
