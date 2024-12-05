@@ -2,9 +2,12 @@ import './App.css';
 import React, {useState} from "react";
 
 export default function App (){
+    
+    // Request
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {           
+        const logo = document.querySelector("#logo");
         e.preventDefault();
         const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
@@ -12,10 +15,18 @@ export default function App (){
             body: JSON.stringify({password})
         });
         if(response.ok){
-            window.location.href = '/dashboard';
+            logo?.classList.remove('saturate-0');
+            logo?.classList.add('saturate-100')
+            setInterval(() => {
+                window.location.href = '/dashboard';  
+            }, 500);
+           
         } else {
             const message = await response.text();
             setErrorMessage(message);
+            logo?.classList.remove('saturate-0');
+            logo?.classList.add('saturate-100');
+            logo?.classList.add('hue-rotate-180')
         }
     };
 
@@ -24,11 +35,11 @@ export default function App (){
              w-screen h-screen flex justify-center items-center m-o max-w-full">
                 <div className="border-solid border-gray-200 border bg-white flex flex-col w-2/6 h-3/4 items-center justify-center content-stretch rounded-3xl">
                     <form onSubmit={handleLogin} action="/login" className="w-1/2 flex items-center gap-6 flex-col bg-transparent">
-                        <img className="bg-transparent w-5/6 saturate-0 invert" src="/src/assets/crimsonanimation.gif" alt="Graph surrounded by multiple circles. Lyszt's logo."></img>
+                        <img id="logo" className="transition-all duration-600 bg-transparent w-5/6 saturate-0" src="/src/assets/crimsonanimation.gif" alt="Graph surrounded by multiple circles. Lyszt's logo."></img>
                         <label htmlFor="password" className="bg-transparent text-left text-gray-500 m-10 ml-7">Password:</label>
                         <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" className='p-3' placeholder="Insert your password." required></input>
                     <input type="submit" name="submit" value="Sign-in" className=" p-3 hover:no-underline hover:bg-blue-400 bg-gray-300 bg-gradient-to-r p-3/"></input>
-                        {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+                        {errorMessage && <p className="bg-transparent text-red-600">{errorMessage}</p>}
                     </form>
                 </div>
             </section>

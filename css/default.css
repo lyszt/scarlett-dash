@@ -26,3 +26,10 @@ body * {
     display: grid;
     height: 100vh;
 }
+#logo {
+    transition: 2s;
+}
+#logo.active {
+    filter: saturate(100) !important;
+    transition: 2s all;
+}
