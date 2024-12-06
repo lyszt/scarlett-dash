@@ -84,6 +84,11 @@ export function Dash() {
     }, []);
 
     return (
-        <h1>hi</h1>
+        <section className="w-screen h-screen flex justify-center items-center m-0 max-w-full flex">
+            <div> 
+       
+            </div>
+        
+        </section>
     );
 }
