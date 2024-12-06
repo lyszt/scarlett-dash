@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState} from "react";
 
-export default function Login (){
+export function Login (){
     
     // Request
     const [password, setPassword] = useState('');
@@ -51,3 +51,9 @@ export default function Login (){
             </section>
     );
 };
+
+export function Dash () {
+  return (
+    <h1>hi</h1>
+  );
+}
