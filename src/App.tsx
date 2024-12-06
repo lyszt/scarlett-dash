@@ -88,8 +88,11 @@ export function Dash() {
     // Link changer
     const changeLink = async (e: React.FormEvent) => {
         console.log(link);
-        if(!link.startsWith('http://')){
+        if(!link.startsWith('http://')&&!link.startsWith('https://')){  
             link = 'http://' + link;
+        }
+        if(link.includes('youtube')){
+            link = link.replace('watch?v=', 'embed/');
         }
         e.preventDefault();
         const browser = document.querySelector('#browser');;
