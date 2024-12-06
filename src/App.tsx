@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from "react";
+import React, {FormEvent, useState} from "react";
 
 export function Login (){
     
@@ -58,6 +58,7 @@ export function Login (){
 import { useEffect } from 'react';
 
 export function Dash() {
+    // User authentication
     useEffect(() => {
         const authenticateUser = async () => {
             try {
@@ -82,13 +83,29 @@ export function Dash() {
 
         authenticateUser();
     }, []);
+    
+    let [link, setLink] = useState('');
+    // Link changer
+    const changeLink = async (e: React.FormEvent) => {
+        console.log(link);
+        if(!link.startsWith('http://')){
+            link = 'http://' + link;
+        }
+        e.preventDefault();
+        const browser = document.querySelector('#browser');;
+        browser?.setAttribute('src', link);
+    }
 
     return (
-        <section className="w-screen h-screen flex justify-center items-center m-0 max-w-full flex">
-            <div> 
-       
+        <section className="w-full h-screen flex justify-center items-start m-0 max-w-full align-start content-start flex-wrap p-0">
+            <form onSubmit={changeLink} className="flex align-left flex-col w-screen">
+                    <input type="text" onChange={(e) => setLink(e.target.value)} name="search" placeholder="Insert a website for visitation." className="p-3 bg-white"></input>
+                    <input type="submit" value="Go" className="p-3 bg-gray-200 w-1/6 m-5 hover:bg-blue-400"></input>
+                </form>
+            <div className='w-full h-screen align-start items-start flex content-start flex-row'>  
+                <iframe id="browser" className="w-screen h-4/5 m-0 p-0" src="https://www.wired.com/"></iframe>         
+                <iframe className="w-1/3 h-4/5" src="https://calendar.google.com/calendar/embed?src=kalliddel%40gmail.com&ctz=America%2FSao_Paulo" width="800" height="600"></iframe>  
             </div>
-        
         </section>
     );
 }
