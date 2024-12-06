@@ -10,6 +10,14 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Functions
+function isAuthenticated(req, res, next) {
+    if (req.session.isAuthenticated) {
+        return next();
+    }
+    res.status(401).send('Unauthorized: You must log in first.');
+}
+// App 
 app.use(cors({
     origin: 'http://localhost:5173',  // Allow frontend to make requests
     methods: ['GET', 'POST'],        // Allow GET and POST methods
@@ -19,6 +27,11 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+        secure: false, // true if HTTPS
+        httpOnly: true, 
+        maxAge: 600000
+    },
 }));
 
 app.post('/login', (req, res) => {
@@ -27,7 +40,8 @@ app.post('/login', (req, res) => {
 
     if (pass_input) {
         if (pass_input === password) {
-            res.redirect('/dashboard');
+            req.session.isAuthenticated = true;
+            res.status(200).send('Logged in.');
         } else {
             res.status(401).send('Invalid password.');
         }
@@ -44,10 +58,9 @@ app.get('/', (req, res) => {
     }
 });
 
-app.get('/dashboard', (req, res) => {
-    res.send('Welcome to the dashboard!');
+app.get('/auth', isAuthenticated, (req, res) => {
+    res.status(200).send();
 });
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

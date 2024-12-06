@@ -11,7 +11,11 @@ export function Login (){
         e.preventDefault();
         const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json','Acess-Control-Allow-Origin':'*'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin':'*'
+            },
+            credentials: 'include',
             body: JSON.stringify({password})
         });
         if(response.ok){
@@ -51,9 +55,35 @@ export function Login (){
             </section>
     );
 };
+import { useEffect } from 'react';
 
-export function Dash () {
-  return (
-    <h1>hi</h1>
-  );
+export function Dash() {
+    useEffect(() => {
+        const authenticateUser = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/auth', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    console.log('User authenticated.');
+                } else {
+                    throw new Error('User not authenticated.');
+                }
+            } catch (error) {
+                console.log(error);
+                window.location.href = '/';
+            }
+        };
+
+        authenticateUser();
+    }, []);
+
+    return (
+        <h1>hi</h1>
+    );
 }
