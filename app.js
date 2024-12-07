@@ -6,6 +6,9 @@ import cors from 'cors';
 
 dotenv.config();
 
+// Globals
+const VITE_YOUTUBE_API_KEY = process.env.VITE_YOUTUBE_API_KEY;
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

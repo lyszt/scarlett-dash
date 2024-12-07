@@ -1,6 +1,8 @@
 import './App.css';
 import React, {FormEvent, useState} from "react";
 
+
+
 export function Login (){
     
     // Request
@@ -87,14 +89,36 @@ export function Dash() {
     let [link, setLink] = useState('');
     // Link changer
     const changeLink = async (e: React.FormEvent) => {
-        console.log(link);
+        e.preventDefault();
         if(!link.startsWith('http://')&&!link.startsWith('https://')){  
             link = 'http://' + link;
         }
         if(link.includes('youtube')){
             link = link.replace('watch?v=', 'embed/');
         }
-        e.preventDefault();
+        if(link.includes('--watch')){
+            const VITE_YOUTUBE_API_KEY =  import.meta.env.VITE_YOUTUBE_API_KEY;
+            if(!VITE_YOUTUBE_API_KEY){
+                throw new Error('Youtube API key not found.');
+            }
+            link = link.replace('--watch', '');
+            const url = `https://www.googleapis.com/youtube/v3/search?key=${VITE_YOUTUBE_API_KEY}&type=video&part=snippet&q=${link}`;
+            interface YoutubeSearchResponse {
+                items: {
+                    id: {
+                        videoId: string;
+                    }
+                }[]
+            }
+            const response = await fetch(url);
+            const data: YoutubeSearchResponse = await response.json() as YoutubeSearchResponse;
+            link = data.items[0].id.videoId;
+            if(data.items.length === 0){
+                console.log('No videos found.');
+            }
+            link = `https://www.youtube.com/embed/${link}`;
+        }
+        console.log(link);
         const browser = document.querySelector('#browser');;
         browser?.setAttribute('src', link);
     }
