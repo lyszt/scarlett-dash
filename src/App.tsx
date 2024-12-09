@@ -127,10 +127,23 @@ export function Dash() {
         return date.toLocaleDateString(locale, {weekday: "long", month: "long", day: "numeric", year: "numeric"});
 
     }
+    function getLocaleHour(offset: number) {
+        // Take -3 as the origin point
+        const d = new Date();
+        const localTime = d.getTime();
+        const localOffset = d.getTimezoneOffset() * 60000;
+        const utc = localTime + localOffset;
+        const target = utc + (3600000 * offset);
+        const time = new Date(target).toLocaleString();
+        return time;
+    }
+
 
     return (
         <main>
-            <span className="w-screen p-5 m-0 block  bg-white"></span>
+            <span className="w-screen p-10 flex flex-col gap-5 m-0 text-3xl bg-white tracking-widest">
+                🇧🇷 {getLocaleHour(-3)} 🇺🇸 {getLocaleHour(-5)} 🇫🇷 {getLocaleHour(+1)} 🇨🇳 {getLocaleHour(+8)} 🇩🇪 {getLocaleHour(+1)}
+            </span>
             <section id="landing" className="w-screen h-screen flex justify-start items-start bg-white">
                 <div className="bg-white w-screen h-3/4 flex flex-col justify-flex-start items-start">
                     <span className="w-1/4 h-1/6 text-center text-3xl bg-blue-400 text-white content-center">Welcome to the <b

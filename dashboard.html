@@ -29,8 +29,92 @@
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
     </script>
   </div>
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Monitore todos os mercados no TradingView</span></a></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {
+        "symbols": [
+        {
+          "proName": "FOREXCOM:SPXUSD",
+          "title": "S&P 500 Index"
+        },
+        {
+          "proName": "FOREXCOM:NSXUSD",
+          "title": "US 100 Cash CFD"
+        },
+        {
+          "proName": "FX_IDC:EURUSD",
+          "title": "EUR to USD"
+        },
+        {
+          "proName": "BITSTAMP:BTCUSD",
+          "title": "Bitcoin"
+        },
+        {
+          "proName": "BITSTAMP:ETHUSD",
+          "title": "Ethereum"
+        }
+      ],
+              "showSymbolLogo": true,
+              "isTransparent": false,
+              "displayMode": "adaptive",
+              "colorTheme": "light",
+              "locale": "br"
+      }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
   <audio src="src/assets/media/welcome.mp3" autoplay="autoplay" type="audio/mp3"></audio>
   <div id="root"></div>
-  <script type="module" src="/src/pages/dashboard.tsx"></script>
+  <div class="finance-widgets" style="display: flex; flex-direction: row-reverse; justify-content: center;">
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+        {
+          "symbol": "NASDAQ:GOOGL",
+                "width": 350,
+                "height": 220,
+                "locale": "en",
+                "dateRange": "12M",
+                "colorTheme": "light",
+                "isTransparent": false,
+                "autosize": false,
+                "largeChartUrl": ""
+        }
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
+    <script type="module" src="/src/pages/dashboard.tsx"></script>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+        {
+          "width": 550,
+                "height": 400,
+                "currencies": [
+          "EUR",
+          "USD",
+          "JPY",
+          "GBP",
+          "CHF",
+          "AUD",
+          "CAD",
+          "NZD"
+        ],
+                "isTransparent": false,
+                "colorTheme": "light",
+                "locale": "en",
+                "backgroundColor": "#ffffff"
+        }
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
+</div>
 </body>
 </html>
