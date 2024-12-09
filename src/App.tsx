@@ -4,11 +4,11 @@ import React, {FormEvent, useState} from "react";
 
 
 export function Login (){
-    
+
     // Request
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const handleLogin = async (e: React.FormEvent) => {           
+    const handleLogin = async (e: React.FormEvent) => {
         const logo = document.querySelector("#logo");
         e.preventDefault();
         const response = await fetch('http://localhost:3000/login', {
@@ -29,9 +29,9 @@ export function Login (){
             transition?.classList.add('w-screen');
             transition?.classList.add('h-screen');
             setInterval(() => {
-                window.location.href = '/dashboard';  
+                window.location.href = '/dashboard';
             }, 1000);
-           
+
         } else {
             const message = await response.text();
             setErrorMessage(message);
@@ -85,12 +85,12 @@ export function Dash() {
 
         authenticateUser();
     }, []);
-    
+
     let [link, setLink] = useState('');
     // Link changer
     const changeLink = async (e: React.FormEvent) => {
         e.preventDefault();
-        if(!link.startsWith('http://')&&!link.startsWith('https://')){  
+        if(!link.startsWith('http://')&&!link.startsWith('https://')){
             link = 'http://' + link;
         }
         if(link.includes('youtube')){
@@ -122,17 +122,36 @@ export function Dash() {
         const browser = document.querySelector('#browser');;
         browser?.setAttribute('src', link);
     }
+    function getPrettyDate(locale: string) {
+        const date = new Date();
+        return date.toLocaleDateString(locale, {weekday: "long", month: "long", day: "numeric", year: "numeric"});
+
+    }
 
     return (
-        <section className="w-full h-screen flex justify-center items-start m-0 max-w-full align-start content-start flex-wrap p-0">
-            <form onSubmit={changeLink} className="flex align-left flex-col w-screen">
-                    <input type="text" onChange={(e) => setLink(e.target.value)} name="search" placeholder="Insert a website for visitation." className="p-3 bg-white"></input>
+        <main>
+            <span className="w-screen p-5 m-0 block  bg-white"></span>
+            <section id="landing" className="w-screen h-screen flex justify-start items-start bg-white">
+                <div className="bg-white w-screen h-3/4 flex flex-col justify-flex-start items-start">
+                    <span className="w-1/4 h-1/6 text-center text-3xl bg-blue-400 text-white content-center">Welcome to the <b
+                        className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin. <br></br> Today is {getPrettyDate('en-US')}.
+                    </span>
+                </div>
+            </section>
+            <section id="outils-1"
+                     className="w-full h-screen bg-white flex justify-center items-start m-0 max-w-full align-start content-start flex-wrap p-0">
+                <form onSubmit={changeLink} className="flex align-left flex-col w-screen bg-white">
+                    <input type="text" onChange={(e) => setLink(e.target.value)} name="search"
+                           placeholder="Insert a website for visitation." className="p-3 bg-white"></input>
                     <input type="submit" value="Go" className="p-3 bg-gray-200 w-1/6 m-5 hover:bg-blue-400"></input>
                 </form>
-            <div className='w-full h-screen align-start items-start flex content-start flex-row'>  
-                <iframe id="browser" className="w-screen h-4/5 m-0 p-0" src="https://www.wired.com/"></iframe>         
-                <iframe className="w-1/3 h-4/5" src="https://calendar.google.com/calendar/embed?src=kalliddel%40gmail.com&ctz=America%2FSao_Paulo" width="800" height="600"></iframe>  
-            </div>
-        </section>
+                <div className='w-full h-screen align-start items-start flex content-start flex-row'>
+                    <iframe id="browser" className="w-screen h-4/5 m-0 p-0" src="https://www.wired.com/"></iframe>
+                    <iframe className="w-1/3 h-4/5"
+                            src="https://calendar.google.com/calendar/embed?src=kalliddel%40gmail.com&ctz=America%2FSao_Paulo"
+                            width="800" height="600"></iframe>
+                </div>
+            </section>
+        </main>
     );
 }
