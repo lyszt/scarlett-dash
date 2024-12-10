@@ -28,7 +28,7 @@ async function fetchMessages() {
         console.log(`Fetching messages...`);
         const channel = await client.channels.fetch('704066892972949507');
         const fetchedMessages = await channel.messages.fetch({ limit: 10 });
-        return fetchedMessages.map((msg) => ({
+        return fetchedMessages.reverse().map((msg) => ({
             content: msg.content,
             author: msg.author.username,
             avatar: msg.author.avatarURL(),
@@ -38,7 +38,6 @@ async function fetchMessages() {
         console.error('Error fetching messages:', error);
     }
 }
-
 
 // Functions
 function isAuthenticated(req, res, next) {
@@ -70,6 +69,18 @@ app.get('/messages', async (req, res) => {
     const messages = await fetchMessages();
     res.json({ messages });
 });
+app.post('/sendMessage', async (req, res) => {
+    const message = req.body.message;
+    try {
+        const channel = await client.channels.fetch('704066892972949507');
+        await channel.send(message);
+        res.status(201).send('Message sent: OK');
+    }
+    catch (error) {
+        console.log(error);
+    }
+
+})
 
 app.post('/login', (req, res) => {
     const password = process.env.PASSWORD;

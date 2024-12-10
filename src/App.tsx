@@ -86,7 +86,7 @@ export function Dash() {
         authenticateUser();
     }, []);
 
-    const [link, setLink] = useState('');
+    let [link, setLink] = useState('');
 
     // Link changer
     const changeLink = async (e: FormEvent) => {
@@ -145,6 +145,27 @@ export function Dash() {
         return new Date(target).toLocaleString();
     }
 
+    // Send message on Discord
+    let [messageInput, setMessageInput] = useState('');
+    const sendMessage = async (e: FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:3000/sendMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({ message: messageInput }),
+            });
+            if (response.ok) {
+                console.log('Message sent.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     interface MessageData {
         content: string;
         author: string;
@@ -172,28 +193,36 @@ export function Dash() {
                 <div className="bg-white w-screen h-3/4 flex flex-col justify-flex-start items-start">
                     <span className="w-2/4 h-1/6 text-center text-3xl bg-blue-400 text-white content-center">
                         Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
-                        <br /> Today is {getPrettyDate('en-US')}.
+                        <br/> Today is {getPrettyDate('en-US')}.
                     </span>
                 </div>
 
-                <div id="discord-current" className="overflow-x-scroll h-3/5 w-3/4 bg-white">
-                    <div>
+                <div id="discord-current" className="h-3/5 w-3/4 bg-white flex flex-row">
+                    <div className="overflow-x-scroll w-full    ">
                         <h3>Listening: Grão-Ducado Czéliano</h3>
                         <ul className="bg-transparent">
                             {messages.length > 0 ? (
                                 messages.map((message, index) => (
-                                    <li key={index} className="p-4 text-3xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
+                                    <li key={index}
+                                        className="p-4 text-3xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
                                         <div className="flex flex-col gap-0 ml-5 items-start">
-                                            <span id="dmessage"  className="drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
+                                            <span id="dmessage"
+                                                  className="drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
                                         </div>
                                     </li>
+
                                 ))
                             ) : (
                                 <li>No messages yet.</li>
                             )}
+
                         </ul>
                     </div>
+                    <form className="h-1/6" onSubmit={sendMessage}>
+                        <input onChange={(e) => setMessageInput(e.target.value)} className="w-full bg-white p-10 shadow-sm border-2 border-black h-1/2" type="text" placeholder="Write here to send a message."></input>
+                        <input type="submit"  value="Send" className="w-1/2 bg-blue-400 hover:bg-blue-200 p-3 m-5"></input>
+                    </form>
                 </div>
             </section>
 
