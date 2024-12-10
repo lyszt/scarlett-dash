@@ -8,11 +8,6 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 
-### **A Rebirth of the Scarlett Gateway: Stronger, Smarter, and Sleeker!**
-> *"One must still have chaos in oneself to be able to give birth to a dancing star. I tell you: you have yet to become chaos within yourselves. You must be ready to burn yourself in your own flame; how could you rise anew if you have not first become ashes?"*  
-— **Friedrich Nietzsche**
-
-### **A Rebirth of the Scarlett Gateway: Stronger, Smarter, and Sleeker!**
 > *"One must still have chaos in oneself to be able to give birth to a dancing star. I tell you: you have yet to become chaos within yourselves. You must be ready to burn yourself in your own flame; how could you rise anew if you have not first become ashes?"*  
 — **Friedrich Nietzsche**
 
