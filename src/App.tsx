@@ -185,10 +185,31 @@ export function Dash() {
 
     return (
         <main>
-            <span className="w-full  flex flex-col gap-5 m-0 text-xl bg-white tracking-widest">
-                🇧🇷 {getLocaleHour(-3)} 🇺🇸 {getLocaleHour(-5)} 🇫🇷 {getLocaleHour(+1)} 🇨🇳 {getLocaleHour(+8)} 🇩🇪 {getLocaleHour(+1)}
-            </span>
-
+            <div className="flex flex-col">
+                <div id="UTC-times"
+                     className="w-full justify-center p-10 flex flex-row gap-5 m-0 text-xl bg-white tracking-widest">
+                    <a href="https://news.google.com/topstories?hl=pt-BR" target="_blank" rel="noopener noreferrer"
+                       aria-label="Top stories in Brazil">
+                        🇧🇷 Brazil - {getLocaleHour(-3)}
+                    </a>
+                    <a href="https://news.google.com/topstories?hl=en-US" target="_blank" rel="noopener noreferrer"
+                       aria-label="Top stories in the United States">
+                        🇺🇸 USA - {getLocaleHour(-5)}
+                    </a>
+                    <a href="https://news.google.com/topstories?hl=fr-FR" target="_blank" rel="noopener noreferrer"
+                       aria-label="Top stories in France">
+                        🇫🇷 France - {getLocaleHour(+1)}
+                    </a>
+                    <a href="https://news.google.com/topstories?hl=zh-CN" target="_blank" rel="noopener noreferrer"
+                       aria-label="Top stories in China">
+                        🇨🇳 China - {getLocaleHour(+8)}
+                    </a>
+                    <a href="https://news.google.com/topstories?hl=de-DE" target="_blank" rel="noopener noreferrer"
+                       aria-label="Top stories in Germany">
+                        🇩🇪 Germany - {getLocaleHour(+1)}
+                    </a>
+                </div>
+            </div>
             <section className="w-full h-screen flex justify-start items-start bg-gray-50">
                 <div className="bg-white w-full h-3/4 flex flex-col justify-flex-start items-start">
                     <span className="w-2/4 h-1/6 text-center text-2xl bg-black text-white content-center">

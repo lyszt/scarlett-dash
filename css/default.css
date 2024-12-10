@@ -101,12 +101,30 @@ ESSENTIAL COMPONENTS
 WIDGETS
  ---------------------------------------
  */
+#UTC-times a{
+    color: black;
+    width: 15%;
+    padding: 1%;
+    background-color: #f3f3f3;
+}
+#UTC-times a:hover {
+    text-decoration: none;
+    background-color: #dadada;
+}
 .top-weather-widget {
     filter: saturate(0);
     width: 90%;
     margin: auto;
 }
+
 .top-weather-widget:hover {
     filter: saturate(1) hue-rotate(90deg);
+    transition: .5s;
+}
+.tradingview-widget-container {
+    filter: saturate(0);
+}
+.tradingview-widget-container:hover {
+    filter: saturate(1);
     transition: .5s;
 }
