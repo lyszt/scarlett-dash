@@ -53,7 +53,7 @@ export function Login() {
                         placeholder="Insert your password."
                         required
                     />
-                    <input type="submit" name="submit" value="Sign-in" className="p-3 hover:no-underline hover:bg-blue-400 bg-gray-300 bg-gradient-to-r p-3/" />
+                    <input type="submit" name="submit" value="Sign-in" className="p-3 hover:no-underline bg-black  text-white hover:bg-gray-300 hover:text-black" />
                     {errorMessage && <p className="bg-transparent text-red-600">{errorMessage}</p>}
                 </form>
             </div>
@@ -185,13 +185,13 @@ export function Dash() {
 
     return (
         <main>
-            <span className="w-screen  flex flex-col gap-5 m-0 text-xl bg-white tracking-widest">
+            <span className="w-full  flex flex-col gap-5 m-0 text-xl bg-white tracking-widest">
                 🇧🇷 {getLocaleHour(-3)} 🇺🇸 {getLocaleHour(-5)} 🇫🇷 {getLocaleHour(+1)} 🇨🇳 {getLocaleHour(+8)} 🇩🇪 {getLocaleHour(+1)}
             </span>
 
-            <section className="w-screen h-screen flex justify-start items-start bg-gray-50">
-                <div className="bg-white w-screen h-3/4 flex flex-col justify-flex-start items-start">
-                    <span className="w-2/4 h-1/6 text-center text-2xl bg-blue-400 text-white content-center">
+            <section className="w-full h-screen flex justify-start items-start bg-gray-50">
+                <div className="bg-white w-full h-3/4 flex flex-col justify-flex-start items-start">
+                    <span className="w-2/4 h-1/6 text-center text-2xl bg-black text-white content-center">
                         Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
                         <br/> Today is {getPrettyDate('en-US')}.
                     </span>
@@ -200,7 +200,7 @@ export function Dash() {
 
             <section id="outils-1"
                      className="w-full h-screen bg-white flex justify-center items-start m-0 max-w-full align-start content-start flex-wrap p-0">
-                <form onSubmit={changeLink} className="flex align-left flex-col w-screen bg-white">
+                <form onSubmit={changeLink} className="flex align-left flex-col w-full bg-white">
                     <input
                         type="text"
                         onChange={(e) => setLink(e.target.value)}
@@ -225,19 +225,18 @@ export function Dash() {
                 </div>
             </section>
 
-            <section id="outils-2" className="w-screen h-screen flex justify-start items-start bg-gray-50">
+            <section id="outils-2" className="w-full h-screen flex justify-start items-start bg-gray-50">
                 <div id="discord-current" className="h-5/6 w-screen bg-white flex flex-col flex">
                     <div className="overflow-x-scroll w-full">
-                        <h3>Listening: Grão-Ducado Czéliano</h3>
                         <ul className="bg-transparent">
                             {messages.length > 0 ? (
                                 messages.map((message, index) => (
                                     <li key={index}
-                                        className="bg-transparent p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
+                                        className="bg-transparent  p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
                                         <div className="flex flex-col gap-0 ml-5 items-start">
                                             <span id="dmessage"
-                                                  className="drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
+                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
                                         </div>
                                     </li>
 
@@ -253,7 +252,7 @@ export function Dash() {
                                className="w-full text-lg bg-white p-10 shadow-sm border-2 border-black h-1/2" type="text"
                                placeholder="Write here to send a message."></input>
                         <input type="submit" value="Send"
-                               className="w-1/2 bg-blue-400 hover:bg-blue-200 p-3 m-5"></input>
+                               className="w-1/2 bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-5"></input>
                     </form>
                 </div>
             </section>

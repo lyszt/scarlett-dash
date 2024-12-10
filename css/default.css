@@ -12,13 +12,25 @@ body * {
     margin: 0;
     width: 100%;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+}
+
 #dashboard-body {
+    max-width: 100%;
+    width: 100vw;
+}
+#dashboard-body main{
     background-color: white !important;
+    width: 90%;
+    margin-left: 10%;
+    max-width: 100%;
 }
 #root {
     width: 100%;
-    max-width: 100%;
-    min-width: 100%;
     background: transparent;
 }
 
@@ -36,6 +48,18 @@ body * {
 #logo.active {
     filter: saturate(100) !important;
     transition: 2s all;
+}
+/*--
+ESSENTIAL COMPONENTS
+ ---------------------------------------
+ */
+.nav-default {
+    position: fixed;
+    height: 100%;
+    width: 15%;
+    z-index: 999;
+    top: 0;
+    left: 0;
 }
 /*--
  INNER DASHBOARD
@@ -56,4 +80,13 @@ body * {
 }
 #dmessage b {
     width: 20%;
+}
+/*--
+WIDGETS
+ ---------------------------------------
+ */
+.top-weather-widget {
+    filter: saturate(0);
+    width: 90%;
+    margin: auto;
 }
