@@ -200,13 +200,13 @@ export function Dash() {
                        aria-label="Top stories in France">
                         🇫🇷 France - {getLocaleHour(+1)}
                     </a>
-                    <a href="https://news.google.com/topstories?hl=zh-CN" target="_blank" rel="noopener noreferrer"
-                       aria-label="Top stories in China">
-                        🇨🇳 China - {getLocaleHour(+8)}
+                    <a href="https://news.google.com/topstories?hl=es-ES" target="_blank" rel="noopener noreferrer"
+                       aria-label="Top stories in Spain">
+                        🇪🇸 Spain - {getLocaleHour(+1)}
                     </a>
-                    <a href="https://news.google.com/topstories?hl=de-DE" target="_blank" rel="noopener noreferrer"
-                       aria-label="Top stories in Germany">
-                        🇩🇪 Germany - {getLocaleHour(+1)}
+                    <a href="https://news.google.com/topstories?hl=it-IT" target="_blank" rel="noopener noreferrer"
+                       aria-label="Top stories in Italy">
+                        🇮🇹 Italy - {getLocaleHour(+1)}
                     </a>
                 </div>
             </div>
