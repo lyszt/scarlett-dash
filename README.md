@@ -43,4 +43,4 @@ But perhaps the most defining feature of the Scarlett Dashboard is how it weaves
 ### **A Digital Symphony, in Your Hands**
 The Scarlett Dashboard is not just a tool — it's an experience, one that blends form and function, elegance and utility, chaos and order. It is designed to be your trusted companion as you navigate the digital landscape, helping you bring your best self to life’s projects and priorities.
 
-![New Scarlett Dashboard](examples/image.png)
+![image](https://github.com/user-attachments/assets/001992f7-2f39-4502-af2b-1d5df2f16228)
