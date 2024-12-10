@@ -185,44 +185,16 @@ export function Dash() {
 
     return (
         <main>
-            <span className="w-screen p-10 flex flex-col gap-5 m-0 text-3xl bg-white tracking-widest">
+            <span className="w-screen  flex flex-col gap-5 m-0 text-xl bg-white tracking-widest">
                 🇧🇷 {getLocaleHour(-3)} 🇺🇸 {getLocaleHour(-5)} 🇫🇷 {getLocaleHour(+1)} 🇨🇳 {getLocaleHour(+8)} 🇩🇪 {getLocaleHour(+1)}
             </span>
 
-            <section id="landing" className="w-screen h-screen flex justify-start items-start bg-gray-50">
+            <section className="w-screen h-screen flex justify-start items-start bg-gray-50">
                 <div className="bg-white w-screen h-3/4 flex flex-col justify-flex-start items-start">
-                    <span className="w-2/4 h-1/6 text-center text-3xl bg-blue-400 text-white content-center">
+                    <span className="w-2/4 h-1/6 text-center text-2xl bg-blue-400 text-white content-center">
                         Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
                         <br/> Today is {getPrettyDate('en-US')}.
                     </span>
-                </div>
-
-                <div id="discord-current" className="h-3/5 w-3/4 bg-white flex flex-row">
-                    <div className="overflow-x-scroll w-full    ">
-                        <h3>Listening: Grão-Ducado Czéliano</h3>
-                        <ul className="bg-transparent">
-                            {messages.length > 0 ? (
-                                messages.map((message, index) => (
-                                    <li key={index}
-                                        className="p-4 text-3xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
-                                        <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
-                                        <div className="flex flex-col gap-0 ml-5 items-start">
-                                            <span id="dmessage"
-                                                  className="drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
-                                        </div>
-                                    </li>
-
-                                ))
-                            ) : (
-                                <li>No messages yet.</li>
-                            )}
-
-                        </ul>
-                    </div>
-                    <form className="h-1/6" onSubmit={sendMessage}>
-                        <input onChange={(e) => setMessageInput(e.target.value)} className="w-full bg-white p-10 shadow-sm border-2 border-black h-1/2" type="text" placeholder="Write here to send a message."></input>
-                        <input type="submit"  value="Send" className="w-1/2 bg-blue-400 hover:bg-blue-200 p-3 m-5"></input>
-                    </form>
                 </div>
             </section>
 
@@ -244,12 +216,45 @@ export function Dash() {
                 </form>
 
                 <div className="w-full h-screen align-start items-start flex content-start flex-row">
-                    <iframe id="browser" className="w-screen h-4/5 m-0 p-0" src="https://www.wired.com/" />
+                    <iframe id="browser" className="w-screen h-4/5 m-0 p-0" src="https://www.wired.com/"/>
                     <iframe
                         className="w-1/3 h-4/5"
                         src="https://calendar.google.com/calendar/embed?src=kalliddel%40gmail.com&ctz=America%2FSao_Paulo"
                         width="800" height="600"
                     />
+                </div>
+            </section>
+
+            <section id="outils-2" className="w-screen h-screen flex justify-start items-start bg-gray-50">
+                <div id="discord-current" className="h-5/6 w-screen bg-white flex flex-col flex">
+                    <div className="overflow-x-scroll w-full">
+                        <h3>Listening: Grão-Ducado Czéliano</h3>
+                        <ul className="bg-transparent">
+                            {messages.length > 0 ? (
+                                messages.map((message, index) => (
+                                    <li key={index}
+                                        className="bg-transparent p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
+                                        <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
+                                        <div className="flex flex-col gap-0 ml-5 items-start">
+                                            <span id="dmessage"
+                                                  className="drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
+                                        </div>
+                                    </li>
+
+                                ))
+                            ) : (
+                                <li>No messages yet.</li>
+                            )}
+
+                        </ul>
+                    </div>
+                    <form className="h-2/6 w-3/4" onSubmit={sendMessage}>
+                        <input onChange={(e) => setMessageInput(e.target.value)}
+                               className="w-full text-lg bg-white p-10 shadow-sm border-2 border-black h-1/2" type="text"
+                               placeholder="Write here to send a message."></input>
+                        <input type="submit" value="Send"
+                               className="w-1/2 bg-blue-400 hover:bg-blue-200 p-3 m-5"></input>
+                    </form>
                 </div>
             </section>
         </main>
