@@ -90,3 +90,7 @@ WIDGETS
     width: 90%;
     margin: auto;
 }
+.top-weather-widget:hover {
+    filter: saturate(1) hue-rotate(90deg);
+    transition: .5s;
+}
