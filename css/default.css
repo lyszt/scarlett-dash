@@ -37,3 +37,17 @@ body * {
     filter: saturate(100) !important;
     transition: 2s all;
 }
+/*--
+ INNER DASHBOARD
+ ---------------------------------------
+ */
+#discord-current div {
+    background: none;
+}
+#discord-current h3 {
+    background: none;
+}
+#dmessage {
+    background-color: rgba(39, 167, 184, 0.38);
+    border-radius: 0px 0px 0px 10px;
+}

@@ -3,15 +3,41 @@ import path from 'path';
 import session from 'express-session';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import {Client, Events, GatewayIntentBits} from 'discord.js';
+
 
 dotenv.config();
 
 // Globals
 const VITE_YOUTUBE_API_KEY = process.env.VITE_YOUTUBE_API_KEY;
-
+const VITE_DISCORD_TOKEN = process.env.VITE_DISCORD_TOKEN;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Discord Integration
+const client = new Client({intents: [GatewayIntentBits.Guilds]})
+client.once(Events.ClientReady, readyClient => {
+    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+});
+client.login(VITE_DISCORD_TOKEN);
+
+async function fetchMessages() {
+    try {
+        // Takes message from the Grand Duchy of Czelia
+        console.log(`Fetching messages...`);
+        const channel = await client.channels.fetch('704066892972949507');
+        const fetchedMessages = await channel.messages.fetch({ limit: 10 });
+        return fetchedMessages.map((msg) => ({
+            content: msg.content,
+            author: msg.author.username,
+            guildId: msg.guildId,
+        }));
+    } catch (error) {
+        console.error('Error fetching messages:', error);
+    }
+}
+
 
 // Functions
 function isAuthenticated(req, res, next) {
@@ -20,6 +46,8 @@ function isAuthenticated(req, res, next) {
     }
     res.status(401).send('Unauthorized: You must log in first.');
 }
+
+
 // App 
 app.use(cors({
     origin: 'http://localhost:5173',  // Allow frontend to make requests
@@ -36,6 +64,11 @@ app.use(session({
         maxAge: 600000
     },
 }));
+
+app.get('/messages', async (req, res) => {
+    const messages = await fetchMessages();
+    res.json({ messages });
+});
 
 app.post('/login', (req, res) => {
     const password = process.env.PASSWORD;
