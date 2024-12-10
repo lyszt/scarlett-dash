@@ -31,6 +31,7 @@ async function fetchMessages() {
         return fetchedMessages.map((msg) => ({
             content: msg.content,
             author: msg.author.username,
+            avatar: msg.author.avatarURL(),
             guildId: msg.guildId,
         }));
     } catch (error) {

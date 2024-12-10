@@ -149,6 +149,7 @@ export function Dash() {
         content: string;
         author: string;
         guildId: string;
+        avatar: string;
     }
 
     const [messages, setMessages] = useState<MessageData[]>([]);
@@ -169,20 +170,23 @@ export function Dash() {
 
             <section id="landing" className="w-screen h-screen flex justify-start items-start bg-gray-50">
                 <div className="bg-white w-screen h-3/4 flex flex-col justify-flex-start items-start">
-                    <span className="w-1/4 h-1/6 text-center text-3xl bg-blue-400 text-white content-center">
+                    <span className="w-2/4 h-1/6 text-center text-3xl bg-blue-400 text-white content-center">
                         Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
                         <br /> Today is {getPrettyDate('en-US')}.
                     </span>
                 </div>
 
-                <div id="discord-current" className="overflow-x-scroll h-3/5 w-1/2 bg-white">
+                <div id="discord-current" className="overflow-x-scroll h-3/5 w-3/4 bg-white">
                     <div>
                         <h3>Listening: Grão-Ducado Czéliano</h3>
                         <ul className="bg-transparent">
                             {messages.length > 0 ? (
                                 messages.map((message, index) => (
-                                    <li id="dmessage" key={index} className="p-4 text-3xl  m-5 w-1/2 grid justify-start text-left">
-                                       <b className="bg-transparent">{message.author}:</b> {message.content})
+                                    <li key={index} className="p-4 text-3xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
+                                        <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
+                                        <div className="flex flex-col gap-0 ml-5 items-start">
+                                            <span id="dmessage"  className="drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
+                                        </div>
                                     </li>
                                 ))
                             ) : (
