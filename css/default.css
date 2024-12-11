@@ -131,7 +131,7 @@ ESSENTIAL COMPONENTS
     transition: .3s;
 }
 .nav-menu button:hover img {
-    filter: brightness(50%);
+    filter: brightness(50%) invert(1);
 }
 
 .active-folder h3 {
