@@ -15,6 +15,7 @@
 The Scarlett Dashboard is designed to streamline my workflow and provide a centralized hub for daily tasks.
 
 ## **Features of the Scarlett Dashboard**
+![Scarlett Gateway Landing Page](https://github.com/user-attachments/assets/ac711a6c-1c93-4338-b4eb-090dd37e8b41)
 
 ### **Weather Integration**
 Provides real-time weather updates and forecasts to help you plan my day effectively.
