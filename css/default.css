@@ -64,18 +64,55 @@ ESSENTIAL COMPONENTS
     z-index: 999;
     top: 0;
     left: 0;
+    background-color: rgb(255,255,255,0.5);
+    border-right: 1px solid rgba(218, 218, 218, 0.5);
 }
 .nav-default a {
-    background-color: #e4e4e4;
+    background-color: #ffffff;
     width: 80%;
     padding: 5%;
-    margin-top: 10%;
+    margin-top: 6%;
+    margin-left: 10%;
     color: black;
 }
+nav > div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+nav button {
+    background-color: #ffffff;
+
+    width: 20%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav img {
+    width: 80%;
+    background: none;
+}
 .nav-default a:hover {
-    background-color: #bfbfbf;
+    background-color: rgba(220, 237, 246, 0.38);
     text-decoration: none;
     color: black;
+}
+.nav-menu {
+    height: 7%;
+    background-color: white;
+    flex-direction: row;
+    justify-content: center;
+    transition: .5s;
+}
+.nav-menu button:hover {
+    background-color: #efefef;
+    transition: .3s;
+}
+.nav-menu button:hover img {
+    filter: brightness(50%);
 }
 /*--
  INNER DASHBOARD
