@@ -137,6 +137,7 @@ ESSENTIAL COMPONENTS
 .active-folder h3 {
     font-size: 1em;
     width: 100%;
+    font-weight: bold;
     height: 20%;
     padding: 10%;
     box-shadow: none;
