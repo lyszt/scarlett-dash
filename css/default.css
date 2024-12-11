@@ -148,11 +148,12 @@ WIDGETS
     color: black;
     width: 15%;
     padding: 1%;
-    background-color: #f3f3f3;
+    background: linear-gradient(30deg, white, #ececec);
+    box-shadow: 0 3px #ececec;
 }
 #UTC-times a:hover {
     text-decoration: none;
-    background-color: #dadada;
+    background: linear-gradient(30deg, #ffffff, #cdcdcd);
 }
 .top-weather-widget {
     filter: saturate(0) invert(1) brightness(1.3);
