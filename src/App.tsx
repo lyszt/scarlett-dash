@@ -247,15 +247,16 @@ export function Dash() {
                 </div>
             </div>
             <section className="w-full h-screen flex justify-start items-start bg-gray-50">
-                <div className="bg-white w-full h-3/4 flex flex-col justify-flex-start items-start">
+                <div className="bg-white w-full h-3/4 flex flex-col justify-flex-start items-center gap-10">
                     <span className="w-3/4 h-1/6 text-center text-2xl bg-black text-white content-center">
                         Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
                         <br/> Today is {getPrettyDate('en-US')}.
                     </span>
+                    <div id="quote" className="h-1/6 w-3/4 p-5 content-center">
+                        <span></span>
+                    </div>
                 </div>
-                <div id="quote" className="h-1/6 p-5 content-center">
-                    <span></span>
-                </div>
+
             </section>
 
             <section id="outils-1"
