@@ -62,6 +62,42 @@ export function Login() {
 };
 
 export function Dash() {
+
+    async function getQuote(key = null) {
+        const quote_element = document.querySelector('#quote');
+
+        const requestBody = { key, lang: 'en' };
+
+        try {
+            const response = await fetch('http://localhost:3000/get-quote', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody),
+            });
+
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ' + response.status);
+            }
+
+            const data = await response.json();
+
+            if (data.quoteText && data.quoteAuthor) {
+                quote_element.innerHTML = `" ${data.quoteText}" - ${data.quoteAuthor}. `;
+            } else {
+                quote_element.innerHTML = 'Sorry, no quote found.';
+            }
+        } catch (error) {
+            console.error('Error fetching quote:', error);
+            quote_element.innerHTML = 'Sorry, there was an error fetching the quote.';
+        }
+    }
+
+    useEffect(() => {
+        getQuote();
+        }, []);
+
+
+
     // User authentication
     useEffect(() => {
         const authenticateUser = async () => {
@@ -212,10 +248,13 @@ export function Dash() {
             </div>
             <section className="w-full h-screen flex justify-start items-start bg-gray-50">
                 <div className="bg-white w-full h-3/4 flex flex-col justify-flex-start items-start">
-                    <span className="w-2/4 h-1/6 text-center text-2xl bg-black text-white content-center">
+                    <span className="w-3/4 h-1/6 text-center text-2xl bg-black text-white content-center">
                         Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
                         <br/> Today is {getPrettyDate('en-US')}.
                     </span>
+                </div>
+                <div id="quote" className="h-1/6 p-5 content-center">
+                    <span></span>
                 </div>
             </section>
 

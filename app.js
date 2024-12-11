@@ -25,7 +25,6 @@ client.login(VITE_DISCORD_TOKEN);
 async function fetchMessages() {
     try {
         // Takes message from the Grand Duchy of Czelia
-        console.log(`Fetching messages...`);
         const channel = await client.channels.fetch('704066892972949507');
         const fetchedMessages = await channel.messages.fetch({ limit: 10 });
         return fetchedMessages.reverse().map((msg) => ({
@@ -112,4 +111,36 @@ app.get('/auth', isAuthenticated, (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
+});
+
+
+// OUTILS AND FUN
+
+app.post('/get-quote', async (req, res) => {
+    const { key, lang = 'en' } = req.body;
+
+    const params = new URLSearchParams();
+    params.append('method', 'getQuote');
+    params.append('format', 'json');
+    params.append('lang', lang);
+    if (key) {
+        params.append('key', key);
+    }
+
+    try {
+        const response = await fetch('http://api.forismatic.com/api/1.0/', {
+            method: 'POST',
+            body: params,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch quote' });
+    }
 });
