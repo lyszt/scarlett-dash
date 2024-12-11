@@ -37,4 +37,4 @@ Connects seamlessly with other tools and platforms, ensuring a unified digital e
 ## **Conclusion**
 The Scarlett Dashboard is a versatile and powerful tool for managing your digital tasks and projects. It is built to help you stay organized, secure, and productive in a fast-paced environment.
 
-![image](https://github.com/user-attachments/assets/001992f7-2f39-4502-af2b-1d5df2f16228)
+![image](https://github.com/user-attachments/assets/061ea4e2-8e23-4437-9a5f-54b06ddcfb67)
