@@ -78,7 +78,8 @@
           const tools_button = document.getElementById("tools-button");
 
           const panels = [social, entertainment, productivity, tools];
-
+          // Sets for initial activation
+          productivity.classList.add("active");
           // Helper function to clear the active class
           function clearActive() {
             panels.forEach((panel) => {
