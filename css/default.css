@@ -78,16 +78,17 @@ ESSENTIAL COMPONENTS
     top: 0;
     left: 0;
     animation: pullInFromLeft 2s both;
-    background-color: rgb(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0);
     border-right: 1px solid rgba(218, 218, 218, 0.5);
 }
 .nav-default a {
     background: linear-gradient(30deg, white, #ececec);
     box-shadow: 0 3px #ececec;
     width: 80%;
-    padding: 5%;
+    font-size: 1em;
+    padding: 6%;
     margin-top: 6%;
-    margin-left: 10%;
+    margin-left: 2%;
     color: black;
 }
 .nav-default a:hover {
@@ -134,8 +135,19 @@ nav img {
     filter: brightness(50%);
 }
 
+.active-folder h3 {
+    font-size: 1em;
+    width: 100%;
+    height: 20%;
+    padding: 10%;
+    box-shadow: none;
+    color: black;
+    margin-top: 6%;
+    background: none;
+    border-bottom: 1px solid #e8e8e8;
+}
 .active-folder {
-    height: 80%;
+    height: 70%;
 }
 .active-folder * {
     overflow: hidden;
@@ -146,17 +158,17 @@ nav img {
     box-shadow: 0 3px #ececec;
 }
 
-#social-folder, #communication-folder, #entertainment-folder, #productivity-folder, #tools-folder {
+#social-folder, #entertainment-folder, #productivity-folder, #tools-folder {
     visibility: hidden;
     position: absolute;
     left: -100%;
     transition: .5s;
 }
-#social-folder.active , #communication-folder.active, #entertainment-folder.active, #productivity-folder.active {
+#social-folder.active, #tools-folder.active, #entertainment-folder.active, #productivity-folder.active {
     visibility: visible;
     left: 0;
 }
-#social-button:active img, #communication-button:active img, #entertainment-button:active img, #tools-button:active img, #productivity-button:active img {
+#social-button:active img, #entertainment-button:active img, #tools-button:active img, #productivity-button:active img {
     filter: invert(1);
     transition: .2s;
 }
