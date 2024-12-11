@@ -94,24 +94,23 @@ ESSENTIAL COMPONENTS
 .nav-default a:hover {
     background: linear-gradient(30deg, #ffffff, #cdcdcd);
 }
-nav > div {
+.nav-default > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: start;
     justify-content: start;
 }
 
-nav button {
+.nav-default button {
     background-color: #ffffff;
-
     width: 20%;
     height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-nav img {
-    width: 80%;
+.nav-default img {
+    width: 100%;
     background: none;
 }
 .nav-default a:hover {
@@ -120,7 +119,7 @@ nav img {
     color: black;
 }
 .nav-menu {
-    height: 7%;
+    height: 10%;
     background-color: rgb(255,255,255,0.5);
     flex-direction: row;
     justify-content: center;
