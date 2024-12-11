@@ -29,7 +29,7 @@ A user-friendly calendar to track events, deadlines, and reminders. Includes syn
 Offers a secure and streamlined login process with session management.
 
 ### **Modern Full-Stack Design**
-Built with **React**, **Vite**, **Node.js**, and **Express**. 
+Built with **React**, **Tailwind**, **Vite**, **Node.js**, and **Express**. 
 ### **Integrated Ecosystem**
 Connects with other tools and platforms.
 
