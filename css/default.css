@@ -24,6 +24,7 @@ body {
     background: url("src/assets/media/background.jpg");
     animation: fadeIn 2s both;
     animation-delay: 1s;
+    scroll-behavior: smooth;
 }
 
 #dashboard-body {
@@ -123,6 +124,7 @@ nav img {
     flex-direction: row;
     justify-content: center;
     transition: .5s;
+    margin-bottom: 10%;
 }
 .nav-menu button:hover {
     background-color: #efefef;
@@ -131,6 +133,34 @@ nav img {
 .nav-menu button:hover img {
     filter: brightness(50%);
 }
+
+.active-folder {
+    height: 80%;
+}
+.active-folder * {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0 3px #ececec;
+}
+
+#social-folder, #communication-folder, #entertainment-folder, #productivity-folder, #tools-folder {
+    visibility: hidden;
+    position: absolute;
+    left: -100%;
+    transition: .5s;
+}
+#social-folder.active , #communication-folder.active, #entertainment-folder.active, #productivity-folder.active {
+    visibility: visible;
+    left: 0;
+}
+#social-button:active img, #communication-button:active img, #entertainment-button:active img, #tools-button:active img, #productivity-button:active img {
+    filter: invert(1);
+    transition: .2s;
+}
+
 /*--
  INNER DASHBOARD
  ---------------------------------------

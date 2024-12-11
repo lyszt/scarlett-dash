@@ -26,41 +26,90 @@
   <header>
     <nav class="nav-default">
       <div class="nav-menu">
-        <button><img src="src/assets/icons/joystick-alt-svgrepo-com.svg" alt="TV, entertainment folder"/></button>
-        <button><img src="src/assets/icons/email-svgrepo-com.svg" alt="TV, entertainment folder"/></button>
-        <button><img src="src/assets/icons/alarm.svg" alt="TV, entertainment folder"/></button>
-        <button><img src="src/assets/icons/tv-svgrepo-com.svg" alt="TV, entertainment folder"/></button>
+        <button id="entertainment-button"><img src="src/assets/icons/joystick-alt-svgrepo-com.svg" alt="TV, entertainment folder"/></button>
+        <button id="communication-button"><img src="src/assets/icons/email-svgrepo-com.svg" alt="TV, entertainment folder"/></button>
+        <button id="productivity-button"><img src="src/assets/icons/alarm.svg" alt="TV, entertainment folder"/></button>
+        <button id="social-button"><img src="src/assets/icons/tv-svgrepo-com.svg" alt="TV, entertainment folder"/></button>
 
       </div>
-      <!-- Entertainment -->
-      <div id="entertainment-folder">
-        <a href="https://youtube.com" target="_blank">YouTube</a>
+      <div class="active-folder">
+        <!-- Entertainment -->
+        <div id="entertainment-folder" class="active">
+          <a href="https://youtube.com" target="_blank">YouTube</a>
+        </div>
+        <!-- Communication -->
+        <div id="communication-folder">
+          <a href="https://gmail.com" target="_blank">E-mail</a>
+        </div>
+        <!-- Productivity -->
+        <div id="productivity-folder">
+          <a href="https://trello.com" target="_blank">Trello</a>
+          <a href="https://lyszt.atlassian.net/" target="_blank">Jira</a>
+        </div>
+        <div id="tools-folder">
+          <!-- Personal Tools -->
+          <a href="https://drive.google.com" target="_blank">Google Drive</a>
+          <a href="https://onedrive.live.com/" target="_blank">OneDrive</a>
+          <a href="https://www.figma.com/" target="_blank">Figma</a>
+          <a href="https://github.com/lyszt" target="_blank">GitHub</a>
+        </div>
+        <!-- Social -->
+        <div id="social-folder">
+          <a href="https://reddit.com" target="_blank">Reddit</a>
+        </div>
       </div>
-      <!-- Communication -->
-      <div id="communication-folder">
-        <a href="https://gmail.com" target="_blank">E-mail</a>
-      </div>
-      <!-- Productivity -->
-      <div id="productivity-folder">
-        <a href="https://trello.com" target="_blank">Trello</a>
-        <a href="https://lyszt.atlassian.net/" target="_blank">Jira</a>
-      </div>
-      <div id="tools-folder">
-      <!-- Personal Tools -->
-      <a href="https://drive.google.com" target="_blank">Google Drive</a>
-      <a href="https://onedrive.live.com/" target="_blank">OneDrive</a>
-      <a href="https://www.figma.com/" target="_blank">Figma</a>
-      <a href="https://github.com/lyszt" target="_blank">GitHub</a>
-      </div>
-      <!-- Social -->
-      <div id="social-folder">
-        <a href="https://reddit.com" target="_blank">Reddit</a>
-      </div>
-      <hr>
       <!-- System -->
+      <hr>
       <a href="/">Logout</a>
     </nav>
+    <!-- NAV SCRIPT START-->
+      <script>
+        social = document.getElementById("social-folder");
+        entertainment = document.getElementById("entertainment-folder");
+        productivity = document.getElementById("productivity-folder");
+        tools = document.getElementById("tools-folder");
+        communications = document.getElementById("communication-folder");
 
+        social_button = document.getElementById("social-button");
+        entertainment_button = document.getElementById("entertainment-button");
+        productivity_button = document.getElementById("productivity-button");
+        tools_button = document.getElementById("tools-button");
+        communications_button = document.getElementById("communication-button");
+
+        panels = [social, entertainment, productivity, tools, communications];
+
+        social_button.addEventListener("click", function () {
+          panels.forEach((panel) => {
+                  panel.classList.remove("active")
+          });
+          social.classList.add('active');
+        })
+        entertainment_button.addEventListener("click", function () {
+          panels.forEach((panel) => {
+            panel.classList.remove("active")
+          });
+          entertainment.classList.add('active');
+        })
+        productivity_button.addEventListener("click", function () {
+          panels.forEach((panel) => {
+            panel.classList.remove("active")
+          });
+          productivity.classList.add('active');
+        })
+        tools_button.addEventListener("click", function () {
+          panels.forEach((panel) => {
+            panel.classList.remove("active")
+          });
+          tools.classList.add('active');
+        })
+        communications_button.addEventListener("click", function () {
+          panels.forEach((panel) => {
+            panel.classList.remove("active")
+          });
+          communications.classList.add('active');
+        })
+        </script>
+    <!-- NAV SCRIPT END-->
   </header>
   <main>
     <div class="top-weather-widget">
