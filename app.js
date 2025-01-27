@@ -3,7 +3,7 @@ import path from 'path';
 import session from 'express-session';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import {Client, Events, GatewayIntentBits} from 'discord.js';
+import {Client, Events, GatewayIntentBits, ActivityType} from 'discord.js';
 
 
 dotenv.config();
@@ -14,12 +14,12 @@ const VITE_DISCORD_TOKEN = process.env.VITE_DISCORD_TOKEN;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+console.log(`Using token ${VITE_DISCORD_TOKEN} for Discord access`);
 // Discord Integration
 const client = new Client({intents: [GatewayIntentBits.Guilds]})
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
-});
+    client.user.setActivity('Gran-Kemp-Morei Array: Sonic destabilization at 900GHz [BiPolar EEG sonics - FINIS MUSICAE]', { type: ActivityType.Watching, url: "https://youtu.be/D7sM4voPS_I"});});
 client.login(VITE_DISCORD_TOKEN);
 
 async function fetchMessages() {
