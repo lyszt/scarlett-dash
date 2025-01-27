@@ -278,14 +278,14 @@ export function Dash() {
                     <div className="overflow-x-scroll w-full h-full text-black">
                         <span id="gemini-response" className="bg-gray-200 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨ {responseText}</span>
                     </div>
-                    <form className="h-2/6 w-3/4" onSubmit={sendGeminiMessage}>
+                    <form className="h-2/6 w-3/4 m-auto" onSubmit={sendGeminiMessage}>
                         <input
                             className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
                             type="text"
-                            placeholder="Write here to send a message."
+                            placeholder="Talk with the Scarlett Gateway AI."
                         onChange={(e) => setGeminiMessage(e.target.value)}></input>
                         <input type="submit" value="Send"
-                               className="w-1/2 rounded-full bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-5"></input>
+                               className="w-1/2 rounded-full m-auto bg-black  text-white hover:bg-gray-300 hover:text-black p-3"></input>
                     </form>
                 </section>
                 <section className="w-1/2 h-screen flex justify-start items-start bg-gray-50">
