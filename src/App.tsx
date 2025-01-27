@@ -246,18 +246,36 @@ export function Dash() {
                     </a>
                 </div>
             </div>
-            <section className="w-full h-screen flex justify-start items-start bg-gray-50">
-                <div className="bg-white w-full h-3/4 flex flex-col justify-flex-start items-center gap-10nodem">
-                    <span className="w-3/4 h-1/6 text-center text-2xl bg-black text-white content-center">
-                        Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
-                        <br/> Today is {getPrettyDate('en-US')}.
-                    </span>
-                    <div id="quote" className="h-1/6 w-3/4 p-5 content-center">
-                        <span></span>
-                    </div>
-                </div>
 
-            </section>
+            <div className="flex flex-row">
+                <section id="gemini" className="h-full w-3/4">
+                    <div className="overflow-x-scroll w-full h-full text-black">
+                        <span className="h-1/2 p-10 bg-gray-200 w-full">✨</span>
+                    </div>
+                    <form className="h-2/6 w-3/4">
+                        <input
+                            className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
+                            type="text"
+                            placeholder="Write here to send a message."></input>
+                        <input type="submit" value="Send"
+                               className="w-1/2 rounded-full bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-5"></input>
+                    </form>
+                </section>
+                <section className="w-1/2 h-screen flex justify-start items-start bg-gray-50">
+                    <div className="bg-white w-full h-3/4 flex flex-col justify-flex-start items-center gap-10nodem">
+                        <span className="w-full h-1/6 text-center text-2xl bg-black text-white content-center">
+                            Welcome to the <b className="bg-transparent text-black-500 font-bold">Scarlett Gateway</b>, Kaldwin.
+                            <br/> Today is {getPrettyDate('en-US')}.
+                        </span>
+                        <div id="quote" className="h-1/6 w-3/4 p-5 content-center">
+                            <span></span>
+                        </div>
+                    </div>
+
+                </section>
+
+
+            </div>
 
             <section id="outils-1"
                      className="w-full h-screen bg-white flex justify-center items-start m-0 max-w-full align-start content-start flex-wrap p-0">
@@ -297,7 +315,7 @@ export function Dash() {
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
                                         <div className="flex flex-col gap-0 ml-5 items-start">
                                             <span id="dmessage"
-                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content})</span>
+                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content}</span>
                                         </div>
                                     </li>
 
@@ -310,7 +328,8 @@ export function Dash() {
                     </div>
                     <form className="h-2/6 w-3/4" onSubmit={sendMessage}>
                         <input onChange={(e) => setMessageInput(e.target.value)}
-                               className="w-full text-lg bg-white p-10 shadow-sm border-2 border-black h-1/2" type="text"
+                               className="w-full text-lg bg-white p-10 shadow-sm border-2 border-black h-1/2"
+                               type="text"
                                placeholder="Write here to send a message."></input>
                         <input type="submit" value="Send"
                                className="w-1/2 bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-5"></input>
