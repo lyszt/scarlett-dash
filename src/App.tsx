@@ -219,6 +219,32 @@ export function Dash() {
             .catch((error) => console.error('Error fetching messages:', error));
     }, []);
 
+    // Gemini messages
+    const [geminiMessage, setGeminiMessage] = useState<string>('');
+    const [responseText, setResponseText] = useState<string>('');
+
+
+    const sendGeminiMessage = async (e: FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await fetch("http://localhost:3000/geminiMessage", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: geminiMessage })
+            });
+
+            if (!response.ok) throw new Error('Request failed');
+
+            const data = await response.text();
+            setResponseText(data);
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <main>
             <div className="flex flex-col">
@@ -250,13 +276,14 @@ export function Dash() {
             <div className="flex flex-row">
                 <section id="gemini" className="h-full w-3/4">
                     <div className="overflow-x-scroll w-full h-full text-black">
-                        <span className="h-1/2 p-10 bg-gray-200 w-full">✨</span>
+                        <span id="gemini-response" className="bg-gray-200 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨ {responseText}</span>
                     </div>
-                    <form className="h-2/6 w-3/4">
+                    <form className="h-2/6 w-3/4" onSubmit={sendGeminiMessage}>
                         <input
                             className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
                             type="text"
-                            placeholder="Write here to send a message."></input>
+                            placeholder="Write here to send a message."
+                        onChange={(e) => setGeminiMessage(e.target.value)}></input>
                         <input type="submit" value="Send"
                                className="w-1/2 rounded-full bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-5"></input>
                     </form>

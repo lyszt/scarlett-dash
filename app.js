@@ -4,6 +4,7 @@ import session from 'express-session';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import {Client, Events, GatewayIntentBits, ActivityType} from 'discord.js';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 
 dotenv.config();
@@ -11,6 +12,7 @@ dotenv.config();
 // Globals
 const VITE_YOUTUBE_API_KEY = process.env.VITE_YOUTUBE_API_KEY;
 const VITE_DISCORD_TOKEN = process.env.VITE_DISCORD_TOKEN;
+const VITE_GEMINI_TOKEN = process.env.VITE_GEMINI_TOKEN;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -64,6 +66,15 @@ app.use(session({
     },
 }));
 
+// Gemini
+app.post('/geminiMessage', async (req, res) => {
+    const genAI = new GoogleGenerativeAI(VITE_GEMINI_TOKEN);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+    const prompt = req.body.message;
+    const result = await model.generateContent(prompt);
+    res.status(200).send(result.response.text());
+})
+// Discord
 app.get('/messages', async (req, res) => {
     const messages = await fetchMessages();
     res.json({ messages });
