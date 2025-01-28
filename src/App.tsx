@@ -294,7 +294,7 @@ export function Dash() {
                             placeholder="Talk with the Scarlett Gateway AI."
                         onChange={(e) => setGeminiMessage(e.target.value)}></input>
                         <input type="submit" value="Send"
-                               className="w-1/2 rounded-full m-auto bg-black  text-white hover:bg-gray-300 hover:text-black p-3"></input>
+                               className="w-1/2 rounded-full m-auto bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-9"></input>
                     </form>
                 </section>
                 <section className="w-1/2 h-screen flex justify-start items-start bg-gray-50">
@@ -346,17 +346,14 @@ export function Dash() {
                         <ul className="bg-transparent">
                             {messages.length > 0 ? (
                                 messages.map((message, index) => (
-                                    <li key={index}
+                                    <motion.li key={index} initial={{scale: .6}} animate={{scale: 1, transition: {duration: 1}}}
                                         className="bg-transparent  p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
                                         <div className="flex flex-col gap-0 ml-5 items-start">
-                                            <motion.span
-                                                animate={{scale: 2, transition: {duration: 2}}
-                                            }
-                                                id="dmessage"
-                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content}</motion.span>
+                                            <span id="dmessage"
+                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content}</span>
                                         </div>
-                                    </li>
+                                    </motion.li>
 
                                 ))
                             ) : (

@@ -83,7 +83,18 @@ app.post('/sendMessage', async (req, res) => {
     const message = req.body.message;
     try {
         const channel = await client.channels.fetch('704066892972949507');
-        await channel.send(message);
+        if(message.startsWith('!')) {
+            if(message.includes("purge")){
+                const fetchedMessages = await channel.messages.fetch({ limit: 10 });
+                for(const entry of fetchedMessages.values()) {
+                    if (entry.author.id === client.user.id) {
+                        await entry.delete();
+                    }
+                }
+            }
+        } else {
+            await channel.send(message);
+        }
         res.status(201).send('Message sent: OK');
         const messages = await fetchMessages();
         res.json({ messages });
