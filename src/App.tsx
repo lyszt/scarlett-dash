@@ -1,5 +1,6 @@
 import './App.css';
 import React, { FormEvent, useState, useEffect } from 'react';
+import {motion} from "motion/react";
 
 export function Login() {
     // Request
@@ -194,8 +195,13 @@ export function Dash() {
                 },
                 body: JSON.stringify({ message: messageInput }),
             });
-            if (response.ok) {
-                console.log('Message sent.');
+                if (response.ok) {
+                    console.log('Message sent.');
+                    fetch('http://localhost:3000/messages')
+                        .then((response) => response.json())
+                        .then((data) => setMessages(data.messages))
+                        .catch((error) => console.error('Error fetching messages:', error));
+                 [];
             }
         } catch (error) {
             console.error(error);
@@ -276,7 +282,10 @@ export function Dash() {
             <div className="flex flex-row">
                 <section id="gemini" className="h-full w-3/4">
                     <div className="overflow-x-scroll w-full h-full text-black">
-                        <span id="gemini-response" className="bg-gray-200 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨ {responseText}</span>
+                        <motion.span
+                            initial={{scale: .6}} animate={{scale: 1, transition: {duration: 2}}
+                            }
+                            id="gemini-response" key={responseText} className="bg-gray-200 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨ {responseText}</motion.span>
                     </div>
                     <form className="h-2/6 w-3/4 m-auto" onSubmit={sendGeminiMessage}>
                         <input
@@ -341,8 +350,11 @@ export function Dash() {
                                         className="bg-transparent  p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
                                         <div className="flex flex-col gap-0 ml-5 items-start">
-                                            <span id="dmessage"
-                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content}</span>
+                                            <motion.span
+                                                animate={{scale: 2, transition: {duration: 2}}
+                                            }
+                                                id="dmessage"
+                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content}</motion.span>
                                         </div>
                                     </li>
 

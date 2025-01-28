@@ -85,6 +85,8 @@ app.post('/sendMessage', async (req, res) => {
         const channel = await client.channels.fetch('704066892972949507');
         await channel.send(message);
         res.status(201).send('Message sent: OK');
+        const messages = await fetchMessages();
+        res.json({ messages });
     }
     catch (error) {
         console.log(error);
