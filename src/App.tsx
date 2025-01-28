@@ -186,6 +186,7 @@ export function Dash() {
     let [messageInput, setMessageInput] = useState('');
     const sendMessage = async (e: FormEvent) => {
         e.preventDefault();
+
         try {
             const response = await fetch('http://localhost:3000/sendMessage', {
                 method: 'POST',
@@ -203,11 +204,13 @@ export function Dash() {
                         .catch((error) => console.error('Error fetching messages:', error));
                  [];
             }
+
         } catch (error) {
             console.error(error);
         }
-    };
+        setMessageInput('');
 
+    };
     interface MessageData {
         content: string;
         author: string;
@@ -230,7 +233,7 @@ export function Dash() {
     };
 
     // Gemini messages
-    const [geminiMessage, setGeminiMessage] = useState<string>('');
+    const [geminiMessage, setGeminiMessage] = useState({message: ''});
     const [responseText, setResponseText] = useState<string>('');
 
 
@@ -253,6 +256,7 @@ export function Dash() {
         } catch (error) {
             console.error('Error:', error);
         }
+        setGeminiMessage('');
     };
 
     return (
@@ -293,7 +297,7 @@ export function Dash() {
                     </div>
                     <form className="h-2/6 w-3/4 m-auto" onSubmit={sendGeminiMessage}>
                         <input
-                            className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
+                            value={input.message} className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
                             type="text"
                             placeholder="Talk with the Scarlett Gateway AI."
                         onChange={(e) => setGeminiMessage(e.target.value)}></input>
