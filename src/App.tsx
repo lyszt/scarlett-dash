@@ -224,6 +224,10 @@ export function Dash() {
             .then((data) => setMessages(data.messages))
             .catch((error) => console.error('Error fetching messages:', error));
     }, []);
+    // Render gifs
+    const isGif = (url: string) => {
+        return url.includes("tenor.com") || url.endsWith(".gif");
+    };
 
     // Gemini messages
     const [geminiMessage, setGeminiMessage] = useState<string>('');
@@ -346,17 +350,22 @@ export function Dash() {
                         <ul className="bg-transparent">
                             {messages.length > 0 ? (
                                 messages.map((message, index) => (
-                                    <motion.li key={index} initial={{scale: .6}} animate={{scale: 1, transition: {duration: 1}}}
-                                        className="bg-transparent  p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
+                                    <motion.li key={index} initial={{scale: .6}}
+                                               animate={{scale: 1, transition: {duration: 1}}}
+                                               className="bg-transparent  p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
                                         <div className="flex flex-col gap-0 ml-5 items-start">
                                             <span id="dmessage"
-                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">{message.content}</span>
-                                        </div>
-                                    </motion.li>
+                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">
+                                                {isGif(message.content) ?
+                                                    <a target="_blank" href={message.content}><img src={message.content}/>View GIF</a>
+                                                    : (message.content)}
+                                    </span>
+                                </div>
+                                </motion.li>
 
                                 ))
-                            ) : (
+                                ) : (
                                 <li>No messages yet.</li>
                             )}
 
