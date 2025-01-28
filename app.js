@@ -97,7 +97,6 @@ app.post('/sendMessage', async (req, res) => {
         }
         res.status(201).send('Message sent: OK');
         const messages = await fetchMessages();
-        res.json({ messages });
     }
     catch (error) {
         console.log(error);
