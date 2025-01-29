@@ -303,7 +303,7 @@ export function Dash() {
                         <input
                             value={geminiMessage.message} className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
                             type="text"
-                            placeholder="Talk with the Scarlett Gateway AI."
+                            placeholder="Talk with Navigator."
                         onChange={(e) =>
                         setGeminiMessage({...geminiMessage,
                             message : e.target.value,
