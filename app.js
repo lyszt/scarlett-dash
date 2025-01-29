@@ -24,11 +24,12 @@ client.once(Events.ClientReady, readyClient => {
     client.user.setActivity('Gran-Kemp-Morei Array: Sonic destabilization at 900GHz [BiPolar EEG sonics - FINIS MUSICAE]', { type: ActivityType.Watching, url: "https://youtu.be/D7sM4voPS_I"});});
 client.login(VITE_DISCORD_TOKEN);
 
-let current_server = '704066892972949507'
+let current_server = ["704066892972949507", "0"];
+let server_array = ["704066892972949507", "413061666796732430", "1236150009842503792"];
 async function fetchMessages() {
     try {
         // Takes message from the Grand Duchy of Czelia
-        const channel = await client.channels.fetch(current_server);
+        const channel = await client.channels.fetch(current_server[0]);
         const fetchedMessages = await channel.messages.fetch({ limit: 10 });
         return fetchedMessages.reverse().map((msg) => ({
             content: msg.content,
@@ -114,7 +115,7 @@ app.get('/messages', async (req, res) => {
 app.post('/sendMessage', async (req, res) => {
     const message = req.body.message;
     try {
-        const channel = await client.channels.fetch(current_server);
+        const channel = await client.channels.fetch(current_server[0]);
         if(message.startsWith('!')) {
             if(message.includes("purge")){
                 const fetchedMessages = await channel.messages.fetch({ limit: 10 });
@@ -123,11 +124,27 @@ app.post('/sendMessage', async (req, res) => {
                         await entry.delete();
                     }
                 }
+            } if (message.toLowerCase().includes("change")) {
+                const destination = message.replace(/!/g, '')  // Remove all exclamation marks
+                    .split(/change/i)[1] // Case-insensitive split
+                    ?.trim()             // Safe trimming
+                    .toLowerCase() || ''; // Default to empty string
+
+                console.log('Destination:', destination);
+
+                if (destination === 'next') {
+                    console.log("Rotating to next server");
+                    current_server[1] = (current_server[1] + 1) % server_array.length;
+                    current_server[0] = server_array[current_server[1]];
+                    console.log("New index:", current_server[1]);
+                }
+                else if (/^\d+$/.test(destination)) { // Check for numeric input
+                    current_server[0] = 'index';
+                } else {
+                    console.error("Unrecognized destination:", destination);
+                }
             }
-            if(message.includes("change")){
-                current_server = message.replace("!","").split("change")[1];
-            }
-        } else {
+        } else if(message.length>0){
             await channel.send(message);
         }
         res.status(201).send('Message sent: OK');
