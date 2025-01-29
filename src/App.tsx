@@ -231,6 +231,9 @@ export function Dash() {
     const isGif = (url: string) => {
         return url.includes("tenor.com") || url.endsWith(".gif");
     };
+    const isYoutube = (url: string) => {
+        return url.includes("youtube.com");
+    }
 
     // Gemini messages
     const [geminiMessage, setGeminiMessage] = useState({message: ""});
@@ -371,7 +374,10 @@ export function Dash() {
                                                   className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">
                                                 {isGif(message.content) ?
                                                     <a target="_blank" href={message.content}><img src={message.content}/>View GIF</a>
-                                                    : (message.content)}
+                                                    : isYoutube(message.content)?
+                                                        <iframe src={"https://youtube.com/embed/" + (message.content).split("?v=")[1]}> </iframe>
+                                                        :
+                                                        (message.content)}
                                     </span>
                                 </div>
                                 </motion.li>
