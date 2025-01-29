@@ -183,6 +183,26 @@ export function Dash() {
     }
 
     // Send message on Discord
+
+    const MessageContent = ({ content }) => {
+        if (isGif(content)) {
+            return (
+                <a className="text-black font-bold" target="_blank" href={content}>
+                    <img src={content} alt="GIF" />View GIF
+                </a>
+            )
+        }
+        if (isYoutube(content)) {
+            return (
+                <iframe
+                    title="YouTube video"
+                    src={`https://youtube.com/embed/${content.split("?v=")[1]}`}
+                />
+            )
+        }
+        return content
+    }
+
     let [messageInput, setMessageInput] = useState('');
     const sendMessage = async (e: FormEvent) => {
         e.preventDefault();
@@ -216,8 +236,12 @@ export function Dash() {
         author: string;
         guildId: string;
         avatar: string;
+        author_id: string;
     }
 
+    const isSelf = (message: string) => {
+        return message.author_id == '1150526796584976444';
+    }
     const [messages, setMessages] = useState<MessageData[]>([]);
 
     useEffect(() => {
@@ -366,24 +390,23 @@ export function Dash() {
                             {messages.length > 0 ? (
                                 messages.map((message, index) => (
                                     <motion.li key={index} initial={{scale: .6}}
-                                               animate={{scale: 1, transition: {duration: 1}}}
-                                               className="bg-transparent  p-4 text-2xl m-5 w-full grid grid-flow-col justify-start text-left">
+                                       animate={{scale: 1, transition: {duration: 1}}}
+                                       className="bg-transparent  p-4 text-2xl m-5 w-full grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
                                         <div className="flex flex-col gap-0 ml-5 items-start bg-transparent">
-                                            <span id="dmessage"
-                                                  className=" bg-gray-300 text-white shadow shadow-gray-400 p-5 m-5 flex">
-                                                {isGif(message.content) ?
-                                                    <a className="text-white" target="_blank" href={message.content}><img src={message.content}/>View GIF</a>
-                                                    : isYoutube(message.content)?
-                                                        <iframe src={"https://youtube.com/embed/" + (message.content).split("?v=")[1]}> </iframe>
-                                                        :
-                                                        (message.content)}
-                                    </span>
-                                </div>
-                                </motion.li>
+                                          <span
+                                              id="dmessage"
+                                              className={` text-black shadow shadow-gray-400 p-5 m-5 flex ${
+                                                  isSelf(message.author_id) ? 'bg-blue-400' : 'bg-gray-300'
+                                              }`}
+                                          >
+                                            <MessageContent content={message.content}/>
+                                          </span>
+                                        </div>
+                                    </motion.li>
 
                                 ))
-                                ) : (
+                            ) : (
                                 <li>No messages yet.</li>
                             )}
 

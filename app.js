@@ -34,6 +34,7 @@ async function fetchMessages() {
             author: msg.author.username,
             avatar: msg.author.avatarURL(),
             guildId: msg.guildId,
+            author_id: msg.author.id,
         }));
     } catch (error) {
         console.error('Error fetching messages:', error);
