@@ -233,19 +233,24 @@ export function Dash() {
     };
 
     // Gemini messages
-    const [geminiMessage, setGeminiMessage] = useState({message: ''});
+    const [geminiMessage, setGeminiMessage] = useState({message: ""});
     const [responseText, setResponseText] = useState<string>('');
 
 
     const sendGeminiMessage = async (e: FormEvent) => {
         e.preventDefault();
+        const messageSent = geminiMessage
+        setGeminiMessage({
+            ...geminiMessage,
+            message: "",
+        });
         try {
             const response = await fetch("http://localhost:3000/geminiMessage", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: geminiMessage })
+                body: JSON.stringify({ message: messageSent })
             });
 
             if (!response.ok) throw new Error('Request failed');
@@ -256,7 +261,6 @@ export function Dash() {
         } catch (error) {
             console.error('Error:', error);
         }
-        setGeminiMessage('');
     };
 
     return (
@@ -293,16 +297,20 @@ export function Dash() {
                         <motion.span
                             initial={{scale: .6}} animate={{scale: 1, transition: {duration: 2}}
                             }
-                            id="gemini-response" key={responseText} className="bg-gray-200 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨ {responseText}</motion.span>
+                            id="gemini-response" key={responseText} className="bg-blue-200 mt-9 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨ {responseText}</motion.span>
                     </div>
                     <form className="h-2/6 w-3/4 m-auto" onSubmit={sendGeminiMessage}>
                         <input
-                            value={input.message} className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
+                            value={geminiMessage.message} className="w-full rounded-full text-lg bg-gray-200 p-10 shadow"
                             type="text"
                             placeholder="Talk with the Scarlett Gateway AI."
-                        onChange={(e) => setGeminiMessage(e.target.value)}></input>
+                        onChange={(e) =>
+                        setGeminiMessage({...geminiMessage,
+                            message : e.target.value,
+                            })
+                        }></input>
                         <input type="submit" value="Send"
-                               className="w-1/2 rounded-full m-auto bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-9"></input>
+                               className="w-1/2 rounded-full m-auto bg-black  text-white hover:bg-gray-300 hover:text-black p-3 mt-9"></input>
                     </form>
                 </section>
                 <section className="w-1/2 h-screen flex justify-start items-start bg-gray-50">

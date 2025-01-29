@@ -70,7 +70,7 @@ app.use(session({
 app.post('/geminiMessage', async (req, res) => {
     const genAI = new GoogleGenerativeAI(VITE_GEMINI_TOKEN);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
-    const prompt = req.body.message;
+    const prompt = req.body.message.message;
     const result = await model.generateContent(prompt);
     res.status(200).send(result.response.text());
 })
