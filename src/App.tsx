@@ -196,7 +196,7 @@ export function Dash() {
             return (
                 <iframe
                     title="YouTube video"
-                    src={`https://youtube.com/embed/${content.split("?v=")[1]}`}
+                    width="640" height="360" src={`https://youtube.com/embed/${content.split("?v=")[1]}`}
                 />
             )
         }
@@ -393,7 +393,7 @@ export function Dash() {
                                        animate={{scale: 1, transition: {duration: 1}}}
                                        className="bg-transparent  p-4 text-2xl m-5 w-full grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
-                                        <div className="flex flex-col gap-0 ml-5 items-start bg-transparent">
+                                        <div className="flex flex-col gap-0 ml-5 w-full items-start bg-transparent">
                                           <span
                                               id="dmessage"
                                               className={` text-black shadow shadow-gray-400 p-5 m-5 flex ${

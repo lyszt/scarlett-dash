@@ -24,10 +24,11 @@ client.once(Events.ClientReady, readyClient => {
     client.user.setActivity('Gran-Kemp-Morei Array: Sonic destabilization at 900GHz [BiPolar EEG sonics - FINIS MUSICAE]', { type: ActivityType.Watching, url: "https://youtu.be/D7sM4voPS_I"});});
 client.login(VITE_DISCORD_TOKEN);
 
+let current_server = '704066892972949507'
 async function fetchMessages() {
     try {
         // Takes message from the Grand Duchy of Czelia
-        const channel = await client.channels.fetch('704066892972949507');
+        const channel = await client.channels.fetch(current_server);
         const fetchedMessages = await channel.messages.fetch({ limit: 10 });
         return fetchedMessages.reverse().map((msg) => ({
             content: msg.content,
@@ -113,7 +114,7 @@ app.get('/messages', async (req, res) => {
 app.post('/sendMessage', async (req, res) => {
     const message = req.body.message;
     try {
-        const channel = await client.channels.fetch('704066892972949507');
+        const channel = await client.channels.fetch(current_server);
         if(message.startsWith('!')) {
             if(message.includes("purge")){
                 const fetchedMessages = await channel.messages.fetch({ limit: 10 });
@@ -122,6 +123,9 @@ app.post('/sendMessage', async (req, res) => {
                         await entry.delete();
                     }
                 }
+            }
+            if(message.includes("change")){
+                current_server = message.replace("!","").split("change")[1];
             }
         } else {
             await channel.send(message);
