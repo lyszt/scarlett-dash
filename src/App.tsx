@@ -367,13 +367,13 @@ export function Dash() {
                                 messages.map((message, index) => (
                                     <motion.li key={index} initial={{scale: .6}}
                                                animate={{scale: 1, transition: {duration: 1}}}
-                                               className="bg-transparent  p-4 text-2xl m-5 w-3/4 grid grid-flow-col justify-start text-left">
+                                               className="bg-transparent  p-4 text-2xl m-5 w-full grid grid-flow-col justify-start text-left">
                                         <img alt="User avatar" className="w-28 rounded-full" src={message.avatar}/>
-                                        <div className="flex flex-col gap-0 ml-5 items-start">
+                                        <div className="flex flex-col gap-0 ml-5 items-start bg-transparent">
                                             <span id="dmessage"
-                                                  className="hover:bg-gray-200 drop-shadow-2xl shadow p-5 m-5 bg-transparent flex">
+                                                  className=" bg-gray-300 text-white shadow shadow-gray-400 p-5 m-5 flex">
                                                 {isGif(message.content) ?
-                                                    <a target="_blank" href={message.content}><img src={message.content}/>View GIF</a>
+                                                    <a className="text-white" target="_blank" href={message.content}><img src={message.content}/>View GIF</a>
                                                     : isYoutube(message.content)?
                                                         <iframe src={"https://youtube.com/embed/" + (message.content).split("?v=")[1]}> </iframe>
                                                         :
@@ -389,13 +389,13 @@ export function Dash() {
 
                         </ul>
                     </div>
-                    <form className="h-2/6 w-3/4" onSubmit={sendMessage}>
+                    <form className="h-2/6 w-full flex flex-row" onSubmit={sendMessage}>
                         <input onChange={(e) => setMessageInput(e.target.value)}
-                               className="w-full text-lg bg-white p-10 shadow-sm border-2 border-black h-1/2"
+                               className="w-full m-8 rounded-xl text-lg bg-gray-200 p-10 shadow"
                                type="text"
-                               placeholder="Write here to send a message."></input>
+                               placeholder="Write here to send a message to Discord."></input>
                         <input type="submit" value="Send"
-                               className="w-1/2 bg-black  text-white hover:bg-gray-300 hover:text-black p-3 m-5"></input>
+                               className="hidden"></input>
                     </form>
                 </div>
             </section>

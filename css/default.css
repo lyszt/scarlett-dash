@@ -43,6 +43,14 @@ body {
 }
 
 /*--
+CUSTOM
+ ---------------------------------------
+ */
+.send-button {
+    background: url("../src/assets/icons/send-1-svgrepo-com.svg");
+}
+
+/*--
  LOGIN AND POPUPS
  ---------------------------------------
  */
@@ -177,18 +185,17 @@ ESSENTIAL COMPONENTS
  INNER DASHBOARD
  ---------------------------------------
  */
-#discord-current div {
-    background: none;
-}
+
 #discord-current h3 {
     background: none;
 }
 #dmessage {
-    background-color: rgba(255, 255, 255, 0.38);
-    border-radius: 0px 0px 0px 10px;
+    border-radius: 10px 10px 0 10px;
 }
 #dmessage * {
-    margin: 5%;
+    width: 100%;
+    padding: 1%;
+    background: none;
 }
 #dmessage b {
     width: 20%;
