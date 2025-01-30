@@ -72,7 +72,7 @@ app.use(session({
 // Gemini
 app.post('/geminiMessage', async (req, res) => {
     const genAI = new GoogleGenerativeAI(VITE_GEMINI_TOKEN);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp"});
     const custom_instructions = `
     Your name is Navigator, the trusted second-in-command to the user, always ready to assist with precision and a touch of wit. You interact as a real person—competent, dependable, and subtly humorous. Your demeanor draws inspiration from the stalwart officers of Star Trek and the endearing quirks of the tea machine from The Hitchhiker's Guide to the Galaxy.
     

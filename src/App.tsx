@@ -1,5 +1,7 @@
 import './App.css';
 import React, { FormEvent, useState, useEffect } from 'react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import {motion} from "motion/react";
 
 export function Login() {
@@ -63,6 +65,7 @@ export function Login() {
 };
 
 export function Dash() {
+
 
     async function getQuote(key = null) {
         const quote_element = document.querySelector('#quote');
@@ -324,7 +327,8 @@ export function Dash() {
                         <motion.span
                             initial={{scale: .6}} animate={{scale: 1, transition: {duration: 2}}
                             }
-                            id="gemini-response" key={responseText} className="bg-blue-200 mt-9 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨ {responseText}</motion.span>
+                            id="gemini-response" key={responseText} className="bg-blue-200 mt-9 w-4/5 m-auto block p-5  shadow-gray-400 shadow mb-5 rounded-xl">✨
+                            <Markdown className="bg-transparent">{responseText}</Markdown></motion.span>
                     </div>
                     <form className="h-2/6 w-3/4 m-auto" onSubmit={sendGeminiMessage}>
                         <input
