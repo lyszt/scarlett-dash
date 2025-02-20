@@ -94,7 +94,7 @@ export function Dash() {
         } catch (error) {
             console.error('Error fetching quote:', error);
             // @ts-ignore
-            quote_element?.innerHTML = 'Sorry, there was an error fetching the quote.';
+            quote_element.innerHTML = 'Sorry, there was an error fetching the quote.';
         }
     }
 
