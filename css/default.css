@@ -21,7 +21,7 @@ body {
     flex-direction: column;
     width: 100%;
     margin: auto;
-    background: url("src/assets/media/background.jpg");
+    background: url("../assets/media/background.jpg");
     animation: fadeIn 2s both;
     animation-delay: 1s;
     scroll-behavior: smooth;
@@ -47,7 +47,7 @@ CUSTOM
  ---------------------------------------
  */
 .send-button {
-    background: url("../src/assets/icons/send-1-svgrepo-com.svg");
+    background: url("../assets/icons/send-1-svgrepo-com.svg");
 }
 
 /*--
