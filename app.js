@@ -57,6 +57,7 @@ app.use(cors({
     origin: 'http://54.84.129.131',  // Allow frontend to make requests
     methods: ['GET', 'POST'],        // Allow GET and POST methods
     credentials: true,               // Allow cookies if needed
+
 }));
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -179,6 +180,11 @@ app.get('/', (req, res) => {
         res.send('Password not located.')
     }
 });
+app.get('/dashboard', (req, res) => {
+    // Serve dashboard page
+    res.sendFile(path.join(__dirname, 'dashboard.html'));
+});
+
 
 app.get('/auth', isAuthenticated, (req, res) => {
     res.status(200).send();
