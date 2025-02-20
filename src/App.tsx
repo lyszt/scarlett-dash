@@ -1,7 +1,6 @@
 import './App.css';
-import React, { FormEvent, useState, useEffect } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import {motion} from "motion/react";
 
 export function Login() {
@@ -86,13 +85,16 @@ export function Dash() {
             const data = await response.json();
 
             if (data.quoteText && data.quoteAuthor) {
+                // @ts-ignore
                 quote_element.innerHTML = `" ${data.quoteText}" - ${data.quoteAuthor}. `;
             } else {
+                // @ts-ignore
                 quote_element.innerHTML = 'Sorry, no quote found.';
             }
         } catch (error) {
             console.error('Error fetching quote:', error);
-            quote_element.innerHTML = 'Sorry, there was an error fetching the quote.';
+            // @ts-ignore
+            quote_element?.innerHTML = 'Sorry, there was an error fetching the quote.';
         }
     }
 
@@ -187,6 +189,7 @@ export function Dash() {
 
     // Send message on Discord
 
+    // @ts-ignore
     const MessageContent = ({ content }) => {
         if (isGif(content)) {
             return (
@@ -242,9 +245,6 @@ export function Dash() {
         author_id: string;
     }
 
-    const isSelf = (message: string) => {
-        return message.author_id == '1150526796584976444';
-    }
     const [messages, setMessages] = useState<MessageData[]>([]);
 
     useEffect(() => {
@@ -400,8 +400,7 @@ export function Dash() {
                                         <div className="flex flex-col gap-0 ml-5 w-full items-start bg-transparent">
                                           <span
                                               id="dmessage"
-                                              className={` text-black shadow shadow-gray-400 p-5 m-5 flex ${
-                                                  isSelf(message.author_id) ? 'bg-blue-400' : 'bg-gray-300'
+                                              className={` text-black shadow shadow-gray-400 p-5 m-5 flex 'bg-gray-300'
                                               }`}
                                           >
                                             <MessageContent content={message.content}/>
