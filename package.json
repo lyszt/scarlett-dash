@@ -5,6 +5,7 @@
   "type": "module",
   "proxy": "http://localhost:3000",
   "scripts": {
+    "start": "npm run dev && nodemon app.js",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
