@@ -54,7 +54,7 @@ function isAuthenticated(req, res, next) {
 
 // App 
 app.use(cors({
-    origin: 'http://localhost:5173',  // Allow frontend to make requests
+    origin: '*',  // Allow frontend to make requests
     methods: ['GET', 'POST'],        // Allow GET and POST methods
     credentials: true,               // Allow cookies if needed
 }));
@@ -184,7 +184,7 @@ app.get('/auth', isAuthenticated, (req, res) => {
     res.status(200).send();
 });
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0'() => {
     console.log(`Server started on port ${PORT}`);
 });
 
