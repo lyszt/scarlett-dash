@@ -6,7 +6,7 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "vite",
-    "test": "concurrently \"vite\" && \"nodemon app.js\"",
+    "test": "concurrently \"vite\" \"nodemon app.js\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
