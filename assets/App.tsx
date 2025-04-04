@@ -12,7 +12,7 @@ export function Login() {
         const logo = document.querySelector('#logo');
         e.preventDefault();
 
-        const response = await fetch('http://54.84.129.131:3000/login', {
+        const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export function Dash() {
         const requestBody = { key, lang: 'en' };
 
         try {
-            const response = await fetch('http://54.84.129.131:3000/get-quote', {
+            const response = await fetch('http://localhost:3000/get-quote', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(requestBody),
@@ -108,7 +108,7 @@ export function Dash() {
     useEffect(() => {
         const authenticateUser = async () => {
             try {
-                const response = await fetch('http://54.84.129.131:3000/auth', {
+                const response = await fetch('http://localhost:3000/auth', {
                     method: 'GET',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
@@ -214,7 +214,7 @@ export function Dash() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://54.84.129.131:3000/sendMessage', {
+            const response = await fetch('http://localhost:3000/sendMessage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ export function Dash() {
             });
                 if (response.ok) {
                     console.log('Message sent.');
-                    fetch('http://54.84.129.131:3000/messages')
+                    fetch('http://localhost:3000/messages')
                         .then((response) => response.json())
                         .then((data) => setMessages(data.messages))
                         .catch((error) => console.error('Error fetching messages:', error));
@@ -249,7 +249,7 @@ export function Dash() {
 
     useEffect(() => {
         // Fetch messages from the backend
-        fetch('http://54.84.129.131:3000/messages')
+        fetch('http://localhost:3000/messages')
             .then((response) => response.json())
             .then((data) => setMessages(data.messages))
             .catch((error) => console.error('Error fetching messages:', error));
@@ -275,7 +275,7 @@ export function Dash() {
             message: "",
         });
         try {
-            const response = await fetch("http://54.84.129.131:3000/geminiMessage", {
+            const response = await fetch("http://localhost:3000/geminiMessage", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

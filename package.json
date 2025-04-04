@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"node app.js\" \"vite --host\"",
+    "start": "concurrently \"node app.js\" \"vite --host localhost\"",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

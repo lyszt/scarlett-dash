@@ -54,7 +54,7 @@ function isAuthenticated(req, res, next) {
 
 // App 
 app.use(cors({
-    origin: 'http://54.84.129.131',  // Allow frontend to make requests
+    origin: 'http://localhost:5173',  // Allow frontend to make requests
     methods: ['GET', 'POST'],        // Allow GET and POST methods
     credentials: true,               // Allow cookies if needed
 
